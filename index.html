@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>rcreator822</title>
+    <link rel="icon" href="favicon-round.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: black;
+        color: white;
+        font-family: Ubuntu, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+
+      #icon {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 2;
+      }
+
+      h1 {
+        font-family: monospace;
+        padding: 10px;
+        margin: 20px;
+        background-color: gray;
+        border-radius: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 2;
+      }
+
+      #typed-text::after {
+        content: '|';
+        animation: blink 0.7s infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      p, pre {
+        padding: 10px;
+        margin: 20px;
+        background-color: gray;
+        border-radius: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 2;
+      }
+
+      p:hover, pre:hover, h1:hover, #icon:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+      }
+
+      #content {
+        max-width: 600px;
+        z-index: 2;
+      }
+
+      #toggle-theme {
+        margin: 30px 0;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: gray;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        z-index: 2;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        z-index: 2;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .tabs a {
+        padding: 10px 15px;
+        background-color: gray;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .tabs a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+      }
+
+      #viewer {
+        width: 95vw;
+        max-width: 1000px;
+        height: 90vh;
+        border: none;
+        margin: 40px 0;
+        background: #f0f0f0;
+        z-index: 2;
+      }
+
+      body.light {
+        background-color: white;
+        color: black;
+      }
+
+      body.light h1,
+      body.light p,
+      body.light a,
+      body.light .tabs a {
+        background-color: #ddd;
+        color: black;
+      }
+
+      body.light #toggle-theme {
+        background-color: black;
+        color: white;
+      }
+
+      /* 📱 MEDIA QUERIES FOR RESPONSIVENESS */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1.5rem;
+          padding: 8px;
+        }
+
+        #icon {
+          width: 150px;
+          height: 150px;
+        }
+
+        #toggle-theme {
+          font-size: 0.9rem;
+          padding: 8px 16px;
+        }
+
+        .tabs a {
+          font-size: 0.9rem;
+          padding: 8px 12px;
+        }
+
+        #viewer {
+          height: 80vh;
+        }
+
+        p {
+          font-size: 0.95rem;
+          margin: 15px;
+          padding: 8px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.2rem;
+        }
+
+        .tabs {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        #viewer {
+          height: 75vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="background"></canvas>
+
+    <div class="tabs">
+      <a href="#content">Bio</a>
+      <a href="#viewer">README</a>
+      <a href="https://ghgames.netlify.app" target="_blank">Gamer Hub</a>
+    </div>
+
+    <h1>Hi, I'm<br><span id="typed-text"></span></h1>
+    <img id="icon" src="favicon.ico" alt="Icon" loading="lazy">
+
+    <div id="content">
+      <p>Hello! I am <b>rcreator822</b>! I like coding with HTML, CSS, and JavaScript. I want to learn backend, especially Node.js. I code with my friends on GitHub. My free-time is always full of coding. Go Eagles and Sixers!</p>
+      <p>My signature project is <b><a href="https://www.github.com/rcreator822/GamerHub" style="color: blue; text-decoration: none;">Gamer Hub</a></b>, an unblocked game and app website with a proxy. I have other projects on the rise such as a giant open-source game website. I hope you enjoy or will enjoy coding. Shout out to W3Schools for their amazing tutorials!</p>
+    </div>
+
+    <iframe id="viewer" src="README.html"></iframe>
+
+    <button id="toggle-theme">Toggle Theme</button>
+
+    <script>
+      const canvas = document.getElementById('background');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const ripples = [];
+      const particles = [];
+
+      document.addEventListener('click', (e) => {
+        ripples.push({ x: e.clientX, y: e.clientY, radius: 0, alpha: 1 });
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        particles.push({ x: e.clientX, y: e.clientY, alpha: 1, radius: 2 });
+      });
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const isLight = document.body.classList.contains('light');
+        const rippleColor = isLight ? '0, 0, 0' : '255, 255, 255';
+
+        for (let i = 0; i < ripples.length; i++) {
+          const r = ripples[i];
+          ctx.beginPath();
+          ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${rippleColor}, ${r.alpha})`;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          r.radius += 1.2;
+          r.alpha -= 0.005;
+          if (r.alpha <= 0) { ripples.splice(i, 1); i--; }
+        }
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${rippleColor}, ${p.alpha})`;
+          ctx.fill();
+          p.alpha -= 0.02;
+          p.radius += 0.1;
+          if (p.alpha <= 0) { particles.splice(i, 1); i--; }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      document.getElementById('toggle-theme').addEventListener('click', () => {
+        document.body.classList.toggle('light');
+      });
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      const messages = ["rcreator822", "a Coder", "an Explorer", "a Gamer"];
+      const typedText = document.getElementById("typed-text");
+      let msgIndex = 0;
+      let charIndex = 0;
+      let typing = true;
+
+      function typeLoop() {
+        if (typing) {
+          if (charIndex < messages[msgIndex].length) {
+            typedText.textContent += messages[msgIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(typeLoop, 150);
+          } else {
+            typing = false;
+            setTimeout(typeLoop, 1000); // Pause before deleting
+          }
+        } else {
+          if (charIndex > 0) {
+            typedText.textContent = messages[msgIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(typeLoop, 100);
+          } else {
+            typing = true;
+            msgIndex = (msgIndex + 1) % messages.length;
+            setTimeout(typeLoop, 500); // Pause before typing next message
+          }
+        }
+      }
+
+      window.addEventListener("load", typeLoop)
+    </script>
+  </body>
+</html>
